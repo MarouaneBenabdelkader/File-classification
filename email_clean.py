@@ -1,3 +1,5 @@
+
+"""regular expression to clean emails and os module to create directories and write emails in them"""
 import os
 import re
 
@@ -5,9 +7,10 @@ import re
 
 
 def clean_email(email):
+    """Remove all whitespace, dashes, and commas from email, and convert to lowercase"""
+    if (email.startswith('.')):
+        email = email[1:]
     return re.sub(r'[\s,-]', '', email).lower()
-
-# Function to create directory and write emails
 
 
 # Read the emails from file
@@ -25,7 +28,10 @@ for email in emails:
         department = email.split('@')[1].split('.')[0]
         if department not in department_emails:
             department_emails[department] = []
+        # Add the email to the list for its department
         department_emails[department].append(email)
+
+# Function to create directory and write emails
 
 
 def write_emails_to_file(department, emails):
