@@ -10,15 +10,6 @@ def clean_email(email):
 # Function to create directory and write emails
 
 
-def write_emails_to_file(department, emails):
-    # Corrected the path to match the assignment requirements
-    directory = f"c:/users/Marouane/Documents/python tps/Tp3_python/emails/{department}"
-    os.makedirs(directory, exist_ok=True)
-    with open(f"{directory}/emails.txt", "w", encoding="utf-8") as f:
-        for email in emails:
-            f.write(email + "\n")
-
-
 # Read the emails from file
 with open('emails_file.txt', 'r', encoding='utf-8') as file:
     # Assuming emails are separated by a space or some other delimiter
@@ -35,6 +26,15 @@ for email in emails:
         if department not in department_emails:
             department_emails[department] = []
         department_emails[department].append(email)
+
+
+def write_emails_to_file(department, emails):
+    directory = f"c:/users/Marouane/Documents/python tps/Tp3_python/emails/{department}"
+    os.makedirs(directory, exist_ok=True)
+    with open(f"{directory}/emails.txt", "w", encoding="utf-8") as f:
+        for email in emails:
+            f.write(email + "\n")
+
 
 # Create directories and write emails
 for department, emails in department_emails.items():
